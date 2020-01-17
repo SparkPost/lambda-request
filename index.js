@@ -1,10 +1,10 @@
 'use strict';
-const request = require('request-promise');
 
 /**
  * @param {{name: string, version: string}} packageData
+ * @param {{defaults: function}} requestLib
  */
-module.exports = function getRequestWrapper(packageData) {
+module.exports = function getRequestWrapper(packageData, requestLib) {
   if (!packageData) {
     throw new Error('Package is required');
   }
@@ -15,7 +15,7 @@ module.exports = function getRequestWrapper(packageData) {
     );
   }
   const userAgent = `${name}/${version} node.js/${process.version}`;
-  return request.defaults({
+  return requestLib.defaults({
     headers: {
       'User-Agent': userAgent
     },

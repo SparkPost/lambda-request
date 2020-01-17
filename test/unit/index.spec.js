@@ -1,6 +1,5 @@
 'use strict';
 
-const proxyquire = require('proxyquire').noCallThru();
 const chai = require('chai');
 const random = require('lodash.random');
 
@@ -14,13 +13,11 @@ describe('lambda request', function() {
     mockRequest = {
       defaults: (args) => args
     };
-    module = proxyquire('index.js', {
-      'request-promise': mockRequest
-    });
+    module = require('index.js');
   });
 
   it('should return a request thing with default options set', function() {
-    const result = module({ name, version });
+    const result = module({ name, version }, mockRequest);
     expect(result).to.deep.equal({
       headers: {
         'User-Agent': `${name}/${version} node.js/${process.version}`
@@ -30,11 +27,11 @@ describe('lambda request', function() {
   });
 
   it('should throw an error if no package is passed', function() {
-    expect(() => module()).to.throw('Package is required');
+    expect(() => module(null, mockRequest)).to.throw('Package is required');
   });
 
   it('should throw an error if bad package is passed', function() {
-    expect(() => module({ something: 'else' })).to.throw(
+    expect(() => module({ something: 'else' }, mockRequest)).to.throw(
       'Invalid package data'
     );
   });
