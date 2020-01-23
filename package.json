@@ -1,7 +1,7 @@
 {
-  "name": "lambda-request",
+  "name": "@sparkpost/lambda-request",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a wrapper for `request-promise` that includes information about your lambda function on the `User-Agent` header of each request.",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test NODE_CONFIG_PERSIST_ON_CHANGE=N NODE_PATH=$NODE_PATH:. nyc --reporter=text-summary --reporter=lcov --report-dir=test/reports/unit/ mocha test/unit/"
@@ -31,5 +31,16 @@
       "eslint --fix",
       "git add"
     ]
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SparkPost/lambda-request.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SparkPost/lambda-request/issues"
+  },
+  "homepage": "https://github.com/SparkPost/lambda-request#readme"
 }
