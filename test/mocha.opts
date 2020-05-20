@@ -1,4 +1,0 @@
---recursive
---timeout 20000
---reporter spec
---exit

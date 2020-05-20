@@ -13,7 +13,7 @@ describe('lambda request', function() {
     mockRequest = {
       defaults: (args) => args
     };
-    module = require('index.js');
+    module = require('../src/index');
   });
 
   it('should return a request thing with default options set', function() {
@@ -31,8 +31,6 @@ describe('lambda request', function() {
   });
 
   it('should throw an error if bad package is passed', function() {
-    expect(() => module({ something: 'else' }, mockRequest)).to.throw(
-      'Invalid package data'
-    );
+    expect(() => module({ something: 'else' }, mockRequest)).to.throw('Invalid package data');
   });
 });
