@@ -31,7 +31,6 @@ describe('functional tests', function () {
     requestWithDefaults(
       { method: 'PUT', uri: 'http://api.thing/the/endpoint', body: { some: 'thing' } },
       (err, result) => {
-        console.log(JSON.stringify(requests, null, 2));
         expect(requests).to.deep.equal([
           {
             uri: '/the/endpoint',
@@ -68,7 +67,6 @@ describe('functional tests', function () {
       body: { some: 'thing' },
       resolveWithFullResponse: true,
     });
-    console.log(JSON.stringify(requests, null, 2));
     expect(requests).to.deep.equal([
       {
         uri: '/the/endpoint',
