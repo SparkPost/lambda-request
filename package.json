@@ -2,23 +2,58 @@
   "name": "@sparkpost/lambda-request",
   "version": "1.0.0",
   "description": "This is a wrapper for `request-promise` that includes information about your lambda function on the `User-Agent` header of each request.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "NODE_ENV=test NODE_CONFIG_PERSIST_ON_CHANGE=N NODE_PATH=$NODE_PATH:. nyc --reporter=text-summary --reporter=lcov --report-dir=test/reports/unit/ mocha test/unit/"
+    "test": "nyc --reporter=lcov --reporter=text-summary --report-dir=test/reports mocha test/**/*.spec.{js,ts}",
+    "build": "tsc",
+    "test:unit": "npm test --",
+    "lint": "eslint ./**/*.{js,ts} --fix",
+    "make-me-pretty": "prettier-eslint $PWD/test/**/*.js --write"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "@types/nock": "^11.1.0",
+    "nock": "^12.0.3"
+  },
   "devDependencies": {
+    "@istanbuljs/nyc-config-typescript": "^1.0.1",
+    "@types/aws-sdk": "^2.7.0",
+    "@types/chai": "^4.2.11",
+    "@types/chai-as-promised": "^7.1.2",
+    "@types/csvtojson": "^1.1.5",
+    "@types/mocha": "^7.0.2",
+    "@types/moment": "^2.13.0",
+    "@types/node": "^13.9.0",
+    "@types/proxyquire": "^1.3.28",
+    "@types/request": "^2.48.4",
+    "@types/request-promise": "^4.1.45",
+    "@types/sinon-chai": "^3.2.3",
+    "@types/table": "^5.0.0",
+    "@types/uuid": "^7.0.2",
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
+    "@typescript-eslint/parser": "^2.26.0",
     "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
     "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
     "eslint-config-sparkpost": "^2.0.0",
-    "husky": "^4.0.9",
-    "lint-staged": "^9.5.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.1.1",
     "lodash.random": "^3.2.0",
-    "mocha": "5.1.1",
-    "nyc": "^11.7.1",
-    "prettier-eslint-cli": "^5.0.0"
+    "mocha": "^7.1.1",
+    "nyc": "^15.0.0",
+    "prettier": "^2.0.2",
+    "prettier-eslint-cli": "^5.0.0",
+    "proxyquire": "^2.1.3",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5",
+    "sinon": "^9.0.1",
+    "sinon-chai": "^3.5.0",
+    "source-map-support": "^0.5.16",
+    "ts-node": "^8.8.1",
+    "typescript": "^3.8.3"
   },
   "husky": {
     "hooks": {
@@ -28,8 +63,10 @@
   "lint-staged": {
     "**/*.js": [
       "prettier-eslint --write",
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
+    ],
+    "**/*.ts": [
+      "eslint --fix"
     ]
   },
   "directories": {
