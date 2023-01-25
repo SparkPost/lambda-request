@@ -1,6 +1,6 @@
 {
   "name": "@sparkpost/lambda-request",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "This is a wrapper for `request-promise` that includes information about your lambda function on the `User-Agent` header of each request.",
   "main": "index.js",
   "scripts": {
